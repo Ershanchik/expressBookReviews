@@ -1,5 +1,5 @@
 Command:
-curl -sS -X POST "http://127.0.0.1:5117/register" -H 'Content-Type: application/json' -d '{"username":"coursera_demo_1794912546220","password":"coursework-demo-password"}'
+curl -sS -X POST "http://127.0.0.1:5117/register" -H 'Content-Type: application/json' -d '{"username":"coursera_demo_1794912630608","password":"coursework-demo-password"}'
 
 Output:
 {"message":"User registered successfully"}

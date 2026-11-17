@@ -1,6 +1,6 @@
 Command:
-TOKEN=$(curl -sS -X POST "http://127.0.0.1:5117/customer/login" -H 'Content-Type: application/json' -d '{"username":"coursera_demo_1794912546220","password":"coursework-demo-password"}' | node -e "let data='';process.stdin.on('data',x=>data+=x).on('end',()=>console.log(JSON.parse(data).accessToken))")
+TOKEN=$(curl -sS -X POST "http://127.0.0.1:5117/customer/login" -H 'Content-Type: application/json' -d '{"username":"coursera_demo_1794912630608","password":"coursework-demo-password"}' | node -e "let data='';process.stdin.on('data',x=>data+=x).on('end',()=>console.log(JSON.parse(data).accessToken))")
 curl -sS -X PUT "http://127.0.0.1:5117/customer/auth/review/1" -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' -d '{"review":"Great book! Very interesting story."}'
 
 Output:
-{"message":"Review added or updated successfully","reviews":{"coursera_demo_1794912546220":"Great book! Very interesting story."}}
+{"message":"Review added or updated successfully","reviews":{"coursera_demo_1794912630608":"Great book! Very interesting story."}}
