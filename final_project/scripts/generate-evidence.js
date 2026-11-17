@@ -73,10 +73,10 @@ async function main() {
     parent: repoDetails.parent.full_name,
     html_url: repoDetails.html_url
   }, null, 2);
+  // Save the exact output of the curl command for reproducible grading.
   save('githubrepo',
-    'curl -sS -H "User-Agent: Coursera-Book-Review" ' + repositoryApi +
-    ' | [display the full_name, fork, parent.full_name and html_url fields]',
-    forkData);
+    'curl -sS -H "User-Agent: Coursera-Book-Review" ' + repositoryApi,
+    repoOutput);
 
   const queries = [
     ['getallbooks', '/'],
