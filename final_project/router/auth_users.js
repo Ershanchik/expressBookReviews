@@ -3,11 +3,12 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
+const config = require('../config.js');
 const books = require('./booksdb.js');
 const regd_users = express.Router();
 
 const users = [];
-const JWT_SECRET = process.env.JWT_SECRET || 'coursework-only-jwt-secret-change-in-production';
+const JWT_SECRET = config.jwtSecret;
 
 const isValid = (username) =>
   users.some((user) => user.username === username);
