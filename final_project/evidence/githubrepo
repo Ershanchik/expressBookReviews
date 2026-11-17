@@ -1,0 +1,10 @@
+Command:
+curl -sS -H "User-Agent: Coursera-Book-Review" https://api.github.com/repos/Ershanchik/expressBookReviews | [display the full_name, fork, parent.full_name and html_url fields]
+
+Output:
+{
+  "full_name": "Ershanchik/expressBookReviews",
+  "fork": true,
+  "parent": "ibm-developer-skills-network/expressBookReviews",
+  "html_url": "https://github.com/Ershanchik/expressBookReviews"
+}

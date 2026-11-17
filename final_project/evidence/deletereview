@@ -1,0 +1,6 @@
+Command:
+TOKEN=$(curl -sS -X POST "http://127.0.0.1:5117/customer/login" -H 'Content-Type: application/json' -d '{"username":"coursera_demo_1794912297655","password":"coursework-demo-password"}' | node -e "let data='';process.stdin.on('data',x=>data+=x).on('end',()=>console.log(JSON.parse(data).accessToken))")
+curl -sS -X DELETE "http://127.0.0.1:5117/customer/auth/review/1" -H "Authorization: Bearer $TOKEN"
+
+Output:
+{"message":"Review deleted successfully","reviews":{}}
