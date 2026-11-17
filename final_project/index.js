@@ -2,13 +2,14 @@
 
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const config = require('./config.js');
 const session = require('express-session');
 const customer_routes = require('./router/auth_users.js').authenticated;
 const genl_routes = require('./router/general.js').general;
 
 const app = express();
-const JWT_SECRET = process.env.JWT_SECRET || 'coursework-only-jwt-secret-change-in-production';
-const SESSION_SECRET = process.env.SESSION_SECRET || 'coursework-only-session-secret-change-me';
+const JWT_SECRET = config.jwtSecret;
+const SESSION_SECRET = config.sessionSecret;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
