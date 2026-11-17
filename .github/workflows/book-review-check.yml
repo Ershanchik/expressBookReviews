@@ -1,0 +1,46 @@
+name: Verify IBM Book Review final project
+
+on:
+  push:
+    paths:
+      - 'final_project/**'
+      - '.github/workflows/book-review-check.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Check out the fork
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        working-directory: final_project
+        run: npm install --no-audit --no-fund
+
+      - name: Run integration tests on real Express routes
+        working-directory: final_project
+        run: npm test
+
+      - name: Generate actual curl outputs for Coursera
+        working-directory: final_project
+        run: npm run evidence
+
+      - name: Commit generated evidence to fork
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add final_project/evidence/
+          if ! git diff --cached --quiet; then
+            git commit -m "Save verified Book Review curl evidence"
+            git push
+          fi
