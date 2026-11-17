@@ -67,16 +67,14 @@ async function main() {
       repoDetails.parent?.full_name !== 'ibm-developer-skills-network/expressBookReviews') {
     throw new Error('Cannot verify fork information from GitHub API');
   }
-  const forkData = JSON.stringify({
-    full_name: repoDetails.full_name,
-    fork: repoDetails.fork,
-    parent: repoDetails.parent.full_name,
-    html_url: repoDetails.html_url
-  }, null, 2);
-  // Save the exact output of the curl command for reproducible grading.
+  const forkData = execFileSync('jq',
+    ['{full_name, fork, parent: .parent.full_name, html_url}'],
+    { input: repoOutput, encoding: 'utf8' });
+  // Both the curl and jq commands are executed on the actual GitHub response.
   save('githubrepo',
-    'curl -sS -H "User-Agent: Coursera-Book-Review" ' + repositoryApi,
-    repoOutput);
+    'curl -sS -H "User-Agent: Coursera-Book-Review" ' + repositoryApi +
+    " | jq '{full_name, fork, parent: .parent.full_name, html_url}'",
+    forkData);
 
   const queries = [
     ['getallbooks', '/'],
